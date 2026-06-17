@@ -1,17 +1,9 @@
-from database import cursor, conn
+from database import add_user, validate_user
 
 
 def signup(username, password):
-    cursor.execute(
-        "INSERT INTO users (username, password) VALUES (?, ?)",
-        (username, password)
-    )
-    conn.commit()
+    return add_user(username, password)
 
 
 def login(username, password):
-    cursor.execute(
-        "SELECT * FROM users WHERE username=? AND password=?",
-        (username, password)
-    )
-    return cursor.fetchone()
+    return validate_user(username, password)
